@@ -2,11 +2,18 @@ import Stripe from "stripe";
 //1) Set Up server
 //A) Stripe libraries
 const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+
 ////////////////////////////////////////////////////////////////////////
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
+      //A) Create customer
+      const customer = await stripe.customers.create({
+        description:
+          "My First Test Customer (created for API docs at https://www.stripe.com/docs/api)",
+      });
+
       /*  A) Create Checkout Sessions from body params. Add an endpoint on your server that creates a Checkout Session.
          A Checkout Session controls what your customer sees on the payment page such as line items, 
         the order amount and currency, and acceptable payment methods. 
@@ -17,17 +24,27 @@ export default async function handler(req, res) {
         /*  D) Choose the mode. Checkout has three modes: payment, subscription, or setup. 
         Use payment mode for one-time purchases.  */
         mode: "payment", //For payment mode, there is a maximum of 100 line items, however it is recommended to consolidate line items if there are more than a few dozen.
-        payment_method_types: ["card", "eps", "ideal"], //A list of the types of payment methods (e.g., card) this Checkout Session can accept.
+        //Added customer id to sessions parameters
+        customer: customer.id,
+        //C) Added customer to payment method types.
+        payment_method_types: ["card", "customer_balance"],
         billing_address_collection: "required", // ''auto' Checkout will only collect the billing address when necessary.
         shipping_options: [{ shipping_rate: "shr_1LsqnWHjmPVeHab7wyM2TU6y" }],
         locale: "pt",
-        customer_creation: "always",
-        tax_id_collection: {
-          enabled: true,
-        },
-
         phone_number_collection: {
           enabled: true,
+        },
+        //D) added options.
+        payment_method_options: {
+          customer_balance: {
+            funding_type: "bank_transfer",
+            bank_transfer: {
+              type: "eu_bank_transfer",
+              eu_bank_transfer: {
+                country: "ES",
+              },
+            },
+          },
         },
         /* C) Products to sell. A list of items the customer is purchasing. Use this parameter to pass one-time or recurring Prices. */
         line_items: req.body.map((item) => {
@@ -65,7 +82,8 @@ export default async function handler(req, res) {
 
       // B) Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
-      console.log("Checkout Session Completed for: ", session);
+
+      console.log("Session: ", session);
       res.status(200).json(session);
     } catch (err) {
       res.status(err.statusCode || 500).json(err.message);
