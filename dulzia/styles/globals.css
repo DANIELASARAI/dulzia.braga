@@ -109,6 +109,13 @@ width: 100%;
  color: #324d67;
 
 }
+
+.addressCard{
+  color: #324d67;
+  font-size: 12px;
+  font-family: monospace;
+
+}
 .product-card:hover{
   transform: scale(1.1,1.1)
 }
@@ -288,21 +295,20 @@ text-align: end;
 
 .footer-container{
   color: #324d67;
-  text-align: center;
+  text-align:start;
   margin-top: 20px;
   padding: 30px 10px;
   font-weight: 700;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 10px;
-  justify-content: center;
+  justify-content:left;
 
 }
 .footer-container .icons{
-  font-size: 30px;
+  font-size: 20px;
   display: flex;
   gap: 10px;
+
 }
  .cart-heading{
   display: flex;
@@ -385,7 +391,7 @@ padding: 20px 10px;
 }
 .cart-bottom{
   position:relative;
-  bottom:50px;
+  bottom:80px;
   right: 5px;
 width: 100%;
 padding: 20px 65px;
@@ -393,12 +399,21 @@ padding: 20px 65px;
 }
 
 .btn-container{
-  width: 400px;
-  margin: auto;
+ 
+
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+
+
+
+  
+ 
  
 }
 .btn{
   width: 100%;
+
   max-width: 400px;
   padding: 10px 20px;
   border-radius: 15px;
@@ -413,7 +428,64 @@ padding: 20px 65px;
     transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
+.btn-multibanco{
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+
+  margin-top: 10px;
+  text-transform: uppercase;
+  background-color: #2447b3;
+  color: #fff;
+  cursor: pointer;
+    transform: scale(1, 1);
+  transition: transform 0.5s ease;
+}
+.btn-mbway{
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+
+  margin-top: 10px;
+  text-transform: uppercase;
+  background-color: #f02d34;
+  color: #fff;
+  cursor: pointer;
+    transform: scale(1, 1);
+  transition: transform 0.5s ease;
+}
+.btn-iban{
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  font-size: 20px;
+
+  margin-top: 10px;
+  text-transform: uppercase;
+  background-color: #99b3ff;
+  color: #fff;
+  cursor: pointer;
+    transform: scale(1, 1);
+  transition: transform 0.5s ease;
+}
 .btn:hover{
+  transform: scale(1.1,1.1);
+}
+.btn-multibanco:hover{
+  transform: scale(1.1,1.1);
+}
+.btn-iban:hover{
+  transform: scale(1.1,1.1);
+}
+.btn-mbway:hover{
   transform: scale(1.1,1.1);
 }
 .product-detail-container{

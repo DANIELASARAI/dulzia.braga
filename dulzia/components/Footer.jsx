@@ -4,11 +4,10 @@ import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 const Footer = () => {
   return (
     <div className="footer-container">
-      <p>2022 Dulzia direitos reservados </p>
+      <p>Dulcia Braga 2022 </p>
+
       <a href="https://instagram.com/dulziabraga">
-        <p className="icons">
-          <AiFillInstagram />
-        </p>
+        <AiFillInstagram />
       </a>
     </div>
   );

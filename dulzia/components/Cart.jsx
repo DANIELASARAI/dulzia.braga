@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import {
   AiOutlineMinus,
@@ -43,6 +43,43 @@ const Cart = () => {
 
     stripe.redirectToCheckout({ sessionId: data.id });
   };
+
+  /* const handleMultibanco = async () => {
+    const stripe = await getStripe();
+    try {
+      const result = await stripe.createSource({
+        type: "multibanco",
+        amount: 1996,
+        currency: "eur",
+        owner: {
+          name: "Jenny Rosen",
+          email: "jenny.rosen@example.com",
+        },
+        redirect: {
+          return_url: `${req.headers.origin}/pagamento`,
+        },
+      });
+
+      if (
+        result &&
+        result.source &&
+        result.source.multibanco &&
+        result.source.multibanco.reference
+      ) {
+        console.log("Create source for: ", result);
+
+        if (response.status == "success") {
+          return;
+        }
+
+        setErrorMessage(
+          "Ocorreu um erro. Verifique os dados e tente novamente."
+        );
+      }
+    } catch (e) {
+      setErrorMessage("Ocorreu um erro. Verifique os dados e tente novamente.");
+    }
+  }; */
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -126,11 +163,32 @@ const Cart = () => {
             <br></br>
             <h5>
               Se pretender faturar com NIF, clique em: Estou comprando como
-              empresa, no próximo passo.
+              empresa, no pago com cartão de crédito.
             </h5>
+
             <div className="btn-container">
+              {/*       <button
+                type="button"
+                className="btn-multibanco"
+                onClick={handleMultibanco}
+              >
+                Multibanco
+              </button>
+              <button type="button" className="btn-mbway" onClick={handleMBway}>
+                MB Way
+              </button> */}
+
+              <Link href="/billing">
+                <button
+                  type="button"
+                  onClick={() => setShowCart(false)}
+                  className="btn-iban"
+                >
+                  Iban
+                </button>
+              </Link>
               <button type="button" className="btn" onClick={handleCheckout}>
-                Pagar
+                crédito
               </button>
             </div>
           </div>
