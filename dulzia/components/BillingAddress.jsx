@@ -18,6 +18,7 @@ import OrderSummery from "../page-sections/OrderSummery";
 import Stepper from "../page-sections/Stepper";
 import { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { EmailClient } from "./EmailClient";
 
 //import { useNavigate } from "react-router-dom"; //  styled components
 
@@ -31,17 +32,12 @@ const StyledFormControlLabel = styled(FormControlLabel)(() => ({
 const BillingAddress = ({ props }) => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Casa");
-  const [nif, setNif] = useState("Nif");
 
   const [values, setValues] = useLocalStorage("Name", "Portugal");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     console.log(event.target.value); //Home, office
-  };
-  const handleNif = (event) => {
-    setNif(event.target.value);
-    console.log(event.target.value); //Nif
   };
 
   const changeHandler = (ev) => {
@@ -74,7 +70,10 @@ const BillingAddress = ({ props }) => {
               Adicionar endereço
             </Button>
           </FlexBetween>
-          <h5>Preencha estes campos antes do pagamento</h5>
+          <h5>
+            Preencha os dados de endereço e clique em fazer pedido antes do
+            pagamento.
+          </h5>
 
           <AppModal open={openModal} handleClose={() => setOpenModal(false)}>
             <H5> Adicionar endereço</H5>
@@ -110,9 +109,21 @@ const BillingAddress = ({ props }) => {
                 <Grid item sm={6} xs={12}>
                   <AppTextField
                     fullWidth
+                    required
                     size="small"
                     label="Nome"
                     name="name"
+                    autoFocus
+                    onChange={changeHandler}
+                  />
+                </Grid>
+                <Grid item sm={6} xs={12}>
+                  <AppTextField
+                    fullWidth
+                    required
+                    size="small"
+                    label="Email"
+                    name="email"
                     autoFocus
                     onChange={changeHandler}
                   />
@@ -122,6 +133,7 @@ const BillingAddress = ({ props }) => {
                   <AppTextField
                     fullWidth
                     size="small"
+                    required
                     label="Phone"
                     name="phone"
                     onChange={changeHandler}
@@ -132,6 +144,7 @@ const BillingAddress = ({ props }) => {
                   <AppTextField
                     fullWidth
                     size="small"
+                    required
                     name="address"
                     label="Address"
                     onChange={changeHandler}
@@ -142,6 +155,7 @@ const BillingAddress = ({ props }) => {
                   <AppTextField
                     fullWidth
                     size="small"
+                    required
                     label="City"
                     name="city"
                     onChange={changeHandler}
@@ -152,6 +166,7 @@ const BillingAddress = ({ props }) => {
                   <AppTextField
                     fullWidth
                     size="small"
+                    required
                     label="Country"
                     name="country"
                     onChange={changeHandler}
@@ -162,6 +177,7 @@ const BillingAddress = ({ props }) => {
                     <AppTextField
                       fullWidth
                       size="small"
+                      required
                       label="Nif"
                       name="nif"
                       onChange={changeHandler}
@@ -189,18 +205,13 @@ const BillingAddress = ({ props }) => {
           </Stack>
 
           <Box mt={2}>
-            {/* <Button
-              disableRipple
-              startIcon={<ChevronLeft />}
-              onClick={() => navigate("/dashboards/checkout")}
-            >
-              Back
-            </Button> */}
+            <EmailClient values={values} />
           </Box>
         </Grid>
 
         <Grid item md={4} xs={12}>
           <OrderSummery
+            values={values}
             buttonText="Payment"
             /*  handleClick={() => navigate("/dashboards/payment")} */
           />

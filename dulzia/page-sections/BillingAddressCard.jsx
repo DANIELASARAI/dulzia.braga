@@ -33,6 +33,8 @@ const BillingAddressCard = ({ selectedValue, values }) => {
           {values.name} <br />
           <span>{values.phone}</span> <br />
           {values.address}, {values.city} <br />
+          <span className="email">{values.email}</span>
+          <br />
           {values.country} <br />
           NIF: {values.nif >= 1 ? values.nif : "N / A"}
         </Paragraph>

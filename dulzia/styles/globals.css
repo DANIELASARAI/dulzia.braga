@@ -114,6 +114,12 @@ width: 100%;
   color: #324d67;
   font-size: 12px;
   font-family: monospace;
+  
+}
+.email{
+  font-family: 'Helvetica';
+  font-style: italic;
+  color:cornflowerblue;
 
 }
 .product-card:hover{

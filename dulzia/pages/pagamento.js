@@ -22,6 +22,7 @@ import Link from "next/link";
 import { lightTheme } from "../constants";
 import { useStateContext } from "../context/StateContext";
 import Stepper from "../page-sections/Stepper";
+import emailjs from "@emailjs/browser";
 
 const HeadTableCell = styled(TableCell)(({ theme }) => ({
   padding: 0,
@@ -64,13 +65,43 @@ const Pagamento = () => {
   }/${current.getFullYear()}`;
   console.log(date);
 
-  const { name, address, nif, phone, country, city } = localStorage;
+  const { name, address, nif, phone, country, city, email } = localStorage;
   console.log(name);
 
   const handleCapture = (e) => {
     setSelectedFile(e.target.value);
   };
   console.log(selectedFile);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    let templateParams = {
+      name: name,
+      email: email,
+      phone: phone,
+      city: city,
+      nif: nif,
+      country: country,
+      address: address,
+      message: "Tem um novo pedido de compra",
+    };
+    emailjs
+      .send(
+        "gmailMessage",
+        "template_uufc0e1",
+        templateParams,
+
+        "t4yHeDqUjbcehttwu"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
     <Box pt={2} pb={4}>
@@ -239,7 +270,7 @@ const Pagamento = () => {
                 <Tiny fontWeight={500}>
                   NIF: <br />
                   <Span color="text.primary" fontSize={13} fontWeight={600}>
-                    305423789
+                    516738267
                   </Span>
                 </Tiny>
                 <Tiny fontWeight={500}>
@@ -254,19 +285,20 @@ const Pagamento = () => {
           </Grid>
         </Grid>
       </Card>
-
-      <Link href="/success">
-        <Button
-          type="button"
-          size="small"
-          variant="outlined"
-          sx={{
-            marginRight: 2,
-          }}
-        >
-          Pagamento realizado
-        </Button>
-      </Link>
+      <Stack direction="row" justifyContent="flex-end" mt={4} spacing={2}>
+        <Link href="/success">
+          <Button
+            type="button"
+            size="small"
+            variant="outlined"
+            sx={{
+              marginRight: 2,
+            }}
+          >
+            Pagamento realizado
+          </Button>
+        </Link>
+      </Stack>
     </Box>
     //Acuse a ricardo de encomienda numero para preparar producto,
     //una vez que llegue la transferencia, se realiza el envio.
