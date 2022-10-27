@@ -163,7 +163,7 @@ const Cart = () => {
             <br></br>
             <h5>
               Se pretender faturar com NIF, clique em: Estou comprando como
-              empresa, no pago com cartão de crédito.
+              empresa, no pago com Cartão.
             </h5>
 
             <div className="btn-container">
@@ -188,7 +188,7 @@ const Cart = () => {
                 </button>
               </Link>
               <button type="button" className="btn" onClick={handleCheckout}>
-                crédito
+                Cartão
               </button>
             </div>
           </div>

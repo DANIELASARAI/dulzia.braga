@@ -73,36 +73,6 @@ const Pagamento = () => {
   };
   console.log(selectedFile);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    let templateParams = {
-      name: name,
-      email: email,
-      phone: phone,
-      city: city,
-      nif: nif,
-      country: country,
-      address: address,
-      message: "Tem um novo pedido de compra",
-    };
-    emailjs
-      .send(
-        "gmailMessage",
-        "template_uufc0e1",
-        templateParams,
-
-        "t4yHeDqUjbcehttwu"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
     <Box pt={2} pb={4}>
       <Box mt={3} maxWidth={700}>
@@ -247,7 +217,7 @@ const Pagamento = () => {
                 <Tiny fontWeight={500}>
                   Iban: <br />
                   <Span color="text.primary" fontSize={13} fontWeight={600}>
-                    Nl24IBAN34553477847370033 AMB NLANBZTC
+                    PT50.0033.0000.45658200313.05
                   </Span>
                 </Tiny>
                 <Tiny fontWeight={500}>
@@ -264,7 +234,7 @@ const Pagamento = () => {
                 <Tiny fontWeight={500}>
                   Nome: <br />
                   <Span color="text.primary" fontSize={13} fontWeight={600}>
-                    Ricardo Ufre
+                    Detalhes Celestiais Unip LDA
                   </Span>
                 </Tiny>
                 <Tiny fontWeight={500}>

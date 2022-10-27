@@ -212,6 +212,7 @@ const BillingAddress = ({ props }) => {
         <Grid item md={4} xs={12}>
           <OrderSummery
             values={values}
+            submit={handleSubmit}
             buttonText="Payment"
             /*  handleClick={() => navigate("/dashboards/payment")} */
           />

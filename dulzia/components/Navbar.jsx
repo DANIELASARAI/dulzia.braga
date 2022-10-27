@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
+import Image from "next/image";
+import logo from "../public/assets/logo.dulzia.png";
 
 import { Cart } from "./";
 import { useStateContext } from "../context/StateContext";
@@ -11,7 +13,15 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <p className="logo">
-        <Link href="/">Dulzia Online Shop 💖</Link>
+        <Link href={"/"}>
+          <Image
+            src={logo}
+            alt="logo"
+            width={30}
+            height={30}
+            cursor="pointer"
+          />
+        </Link>
       </p>
 
       <button

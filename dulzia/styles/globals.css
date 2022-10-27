@@ -67,6 +67,9 @@ width: 100%;
 .logo{
   color: gray;
   font-size: 18px;
+  cursor: pointer;
+  display: flex;
+
 
 }
 .cart-icon{
@@ -259,10 +262,10 @@ text-align: end;
 }
 .footer-banner-image{
   position: absolute;
-  /* top: -35%;
-  left: 8%; */
-  top: -25%;
-  left: 25%;
+  top: 0%;
+  left:35%;
+  width: 550px;
+  height: 450px;
 }
 .banner-desc .right{
   line-height: 1.4;
@@ -307,7 +310,7 @@ text-align: end;
   font-weight: 700;
   display: flex;
   gap: 10px;
-  justify-content:left;
+  justify-content:center;
 
 }
 .footer-container .icons{

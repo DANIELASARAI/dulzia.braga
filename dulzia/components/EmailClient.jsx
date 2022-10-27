@@ -1,15 +1,18 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { Button, Grid } from "@mui/material";
 import AppTextField from "./flexbox/input-fields/AppTextField";
 import { Box } from "@mui/system";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 import { useStateContext } from "../context/StateContext";
 
 export const EmailClient = ({ values }) => {
   const { name, email, phone, nif, address, city, country } = values;
   const { totalPrice, totalQuantities, cartItems } = useStateContext();
   const item = cartItems.map((item) => item.name);
+  const [submit, setSubmit] = useState(true);
+
   console.log(item);
   console.log(cartItems);
   const sendEmail = (e) => {
@@ -29,15 +32,16 @@ export const EmailClient = ({ values }) => {
     };
     emailjs
       .send(
-        "gmailMessage",
-        "template_uufc0e1",
+        process.env.NEXT_PUBLIC_SERVICE_ID,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID,
         templateParams,
-
-        "t4yHeDqUjbcehttwu"
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
       )
       .then(
         (result) => {
-          console.log(result.text);
+          setSubmit(false);
+          toast.success(`Orden tomada, verifique suo email!`);
+          console.log(result);
         },
         (error) => {
           console.log(error.text);
@@ -47,9 +51,16 @@ export const EmailClient = ({ values }) => {
 
   return (
     <Box py={2}>
-      <Button onClick={sendEmail} type="submit" variant="contained">
-        Fazer o pedido
-      </Button>
+      {submit && (
+        <Button
+          onClick={sendEmail}
+          //disabled={!sendEmail.result ? true : false}
+          type="submit"
+          variant="contained"
+        >
+          Fazer o pedido
+        </Button>
+      )}
     </Box>
   );
 };
