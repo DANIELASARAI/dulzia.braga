@@ -295,7 +295,7 @@ text-align: end;
 .cart-container{
   height: 100vh;
   width: 600px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   float: right;
   padding: 40px 10px;
   position: relative;
@@ -352,8 +352,8 @@ text-align: end;
 .product-container{
   margin-top: 15px;
   overflow: auto;
-max-height: 70vh;
-padding: 20px 10px;
+max-height: 55vh;
+padding: 10px 10px;
 }
 .product{
   display: flex;
@@ -384,11 +384,11 @@ padding: 20px 10px;
 }
 .total{
   display: flex;
-  margin-top: 20px;
-  justify-content: space-between;
+  margin-top: 12px;
+ justify-content:right;
 }
 .total h3{
-  font-size: 20px;
+  font-size: 18px;
 
 }
 .remove-item{
@@ -402,82 +402,71 @@ padding: 20px 10px;
   position:relative;
   bottom:80px;
   right: 5px;
-width: 100%;
-padding: 20px 65px;
+  width: 100%;
 
 }
 
 .btn-container{
+  width: 450px;
+  display: flex; 
+  justify-content:space-around;
+  margin-top: 10px;
  
 
+ 
+}
+.back-button-container {
   display: flex;
-  flex-direction: row;
-  column-gap: 10px;
-
-
-
-  
- 
- 
+  justify-content: center;
 }
+.buttons .back-button {
+  padding: 10px 20px;
+  border: 1px solid  #fc3468;
+  border-radius: 20px;
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: white;
+  color:  #fc3468;
+  cursor: pointer;
+  width: 200px;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+  margin-inline: auto;
+}
+.buttons .back-button:hover {
+  transform: scale(1.1, 1.1)
+}
+
 .btn{
-  width: 100%;
-
-  max-width: 400px;
-  padding: 10px 20px;
+  width: 80%;
+  max-width:130px;
   border-radius: 15px;
   border: none;
-  font-size: 20px;
-
-  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
   text-transform: uppercase;
-  background-color: #fc3468;
+  background-color:  #fc3468;
   color: #fff;
   cursor: pointer;
     transform: scale(1, 1);
   transition: transform 0.5s ease;
 }
-.btn-multibanco{
-  width: 100%;
-  max-width: 400px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  border: none;
-  font-size: 20px;
 
-  margin-top: 10px;
-  text-transform: uppercase;
-  background-color: #2447b3;
-  color: #fff;
-  cursor: pointer;
-    transform: scale(1, 1);
-  transition: transform 0.5s ease;
-}
-.btn-mbway{
-  width: 100%;
-  max-width: 400px;
-  padding: 10px 20px;
-  border-radius: 15px;
-  border: none;
-  font-size: 20px;
 
-  margin-top: 10px;
-  text-transform: uppercase;
-  background-color: #f02d34;
-  color: #fff;
-  cursor: pointer;
-    transform: scale(1, 1);
-  transition: transform 0.5s ease;
-}
+
+
 .btn-iban{
-  width: 100%;
-  max-width: 400px;
+  width: 80%;
+  max-width:130px;
   padding: 10px 20px;
   border-radius: 15px;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
 
-  margin-top: 10px;
   text-transform: uppercase;
   background-color: #99b3ff;
   color: #fff;
@@ -576,6 +565,7 @@ padding: 20px 65px;
 .buttons .add-to-cart{
   padding: 10px 20px;
   border: 1px solid #fc3468 ;
+  border-radius: 20px;
   margin-top: 40px;
   font-size: 15px;
   font-weight: 500;
@@ -595,6 +585,7 @@ padding: 20px 65px;
   padding: 10px 20px;
   background-color: #fc3468;
   color: white;
+  border-radius: 20px;
   border: none;
   margin-top: 40px;
   font-size: 15px;
@@ -816,10 +807,12 @@ margin-top: 160px;
 .cart-bottom{
   padding: 30px;
 }
-
-.total h3{
-  font-size: 15px;
+.totalPrice{
+  color: #324d67;
+  justify-content:end;
 }
+
+
 .track {
   animation: marquee 10s linear infinite;
   width: 550%;

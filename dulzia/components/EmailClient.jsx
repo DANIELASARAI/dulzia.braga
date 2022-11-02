@@ -10,8 +10,8 @@ import { useStateContext } from "../context/StateContext";
 export const EmailClient = ({ values }) => {
   const { name, email, phone, nif, address, city, country } = values;
   const { totalPrice, totalQuantities, cartItems } = useStateContext();
-  const item = cartItems.map((item) => item.name);
-  const [submit, setSubmit] = useState(true);
+  const item = cartItems?.map((item) => item.name);
+  const [submit, setSubmit] = useState(false);
 
   console.log(item);
   console.log(cartItems);
@@ -39,7 +39,7 @@ export const EmailClient = ({ values }) => {
       )
       .then(
         (result) => {
-          setSubmit(false);
+          setSubmit(true);
           toast.success(`Orden tomada, verifique suo email!`);
           console.log(result);
         },
@@ -51,16 +51,16 @@ export const EmailClient = ({ values }) => {
 
   return (
     <Box py={2}>
-      {submit && (
+      {values ? (
         <Button
           onClick={sendEmail}
-          //disabled={!sendEmail.result ? true : false}
+          disabled={submit}
           type="submit"
           variant="contained"
         >
           Fazer o pedido
         </Button>
-      )}
+      ) : null}
     </Box>
   );
 };

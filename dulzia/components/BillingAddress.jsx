@@ -19,6 +19,8 @@ import Stepper from "../page-sections/Stepper";
 import { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { EmailClient } from "./EmailClient";
+import { Remove } from "@mui/icons-material";
+import Delete from "../icons/Delete";
 
 //import { useNavigate } from "react-router-dom"; //  styled components
 
@@ -29,15 +31,14 @@ const StyledFormControlLabel = styled(FormControlLabel)(() => ({
   },
 }));
 
-const BillingAddress = ({ props }) => {
+const BillingAddress = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Casa");
+  const [selectedValue, setSelectedValue] = useState("Nif");
 
-  const [values, setValues] = useLocalStorage("Name", "Portugal");
+  const [values, setValues] = useState("");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    console.log(event.target.value); //Home, office
   };
 
   const changeHandler = (ev) => {
@@ -62,6 +63,9 @@ const BillingAddress = ({ props }) => {
         <Grid item md={8} xs={12}>
           <FlexBetween flexWrap="wrap" gap={1.5} mb={3}>
             <H5>Faturamento e endereço</H5>
+            {values && (
+              <Delete cursor="pointer" onClick={() => setValues("")} />
+            )}
             <Button
               variant="contained"
               startIcon={<Add />}
@@ -82,17 +86,6 @@ const BillingAddress = ({ props }) => {
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <RadioGroup row value={selectedValue} onChange={handleChange}>
-                    <StyledFormControlLabel
-                      value="Casa"
-                      control={<AppRadio />}
-                      label="Casa"
-                    />
-                    <StyledFormControlLabel
-                      value="Oficina"
-                      control={<AppRadio />}
-                      label="Oficina"
-                    />
-
                     <StyledFormControlLabel
                       value="Nif"
                       control={<AppRadio />}
@@ -136,6 +129,16 @@ const BillingAddress = ({ props }) => {
                     required
                     label="Phone"
                     name="phone"
+                    onChange={changeHandler}
+                  />
+                </Grid>
+                <Grid item sm={6} xs={12}>
+                  <AppTextField
+                    fullWidth
+                    size="small"
+                    required
+                    label="Còdigo Postal"
+                    name="postal"
                     onChange={changeHandler}
                   />
                 </Grid>

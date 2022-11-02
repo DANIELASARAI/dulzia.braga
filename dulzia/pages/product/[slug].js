@@ -9,6 +9,7 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import { Product } from "../../components";
+import Link from "next/link";
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
@@ -66,13 +67,20 @@ const ProductDetails = ({ product, products }) => {
               className="add-to-cart"
               onClick={() => onAdd(product, qty)}
             >
-              Adicionar ao carrinho
+              carrinho
             </button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>
               Compre Agora
             </button>
           </div>
         </div>
+      </div>
+      <div className="back-button-container buttons">
+        <Link href="/">
+          <button className="back-button" type="button">
+            Voltar
+          </button>
+        </Link>
       </div>
 
       <div className="maylike-products-wrapper">

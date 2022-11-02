@@ -65,7 +65,8 @@ const Pagamento = () => {
   }/${current.getFullYear()}`;
   console.log(date);
 
-  const { name, address, nif, phone, country, city, email } = localStorage;
+  const { name, address, nif, phone, postal, country, city, email } =
+    localStorage;
   console.log(name);
 
   const handleCapture = (e) => {
@@ -102,7 +103,9 @@ const Pagamento = () => {
                 <H5>{name}</H5>
                 <H5>NIF:{nif}</H5>
                 <Tiny fontWeight={500} lineHeight={1.6}>
-                  {address} <br /> {city}, {country}
+                  {city}, {postal} <br />
+                  {address} <br />
+                  {country}
                 </Tiny>
               </Stack>
 

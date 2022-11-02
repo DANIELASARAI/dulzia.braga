@@ -46,7 +46,7 @@ const OrderSummery = ({ showCoupon, showEditBtn, buttonText, handleClick }) => {
       </FlexBetween>
 
       <Stack spacing={1.5} mb={4}>
-        <ListItem title="Produtos" value={cartItems.length} />
+        <ListItem title="Produtos" value={cartItems?.length} />
         <ListItem title="Total de ítens" value={totalQuantities} />
 
         <Divider />

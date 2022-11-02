@@ -155,16 +155,19 @@ const Cart = () => {
 
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
+            <br></br>
+            <br></br>
             <div className="total">
+              <br></br>
+              <br></br>
               <h3>Total:</h3>
 
-              <h3>${totalPrice}</h3>
+              <h3>€ {totalPrice}</h3>
             </div>
-            <br></br>
-            <h5>
+            <h6>
               Se pretender faturar com NIF, clique em: Estou comprando como
               empresa, no pago com Cartão.
-            </h5>
+            </h6>
 
             <div className="btn-container">
               {/*       <button
