@@ -9,10 +9,10 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
       //A) Create customer
-      const customer = await stripe.customers.create({
+      /*  const customer = await stripe.customers.create({
         description:
           "My First Test Customer (created for API docs at https://www.stripe.com/docs/api)",
-      });
+      }); */
 
       /*  A) Create Checkout Sessions from body params. Add an endpoint on your server that creates a Checkout Session.
          A Checkout Session controls what your customer sees on the payment page such as line items, 
@@ -25,17 +25,20 @@ export default async function handler(req, res) {
         Use payment mode for one-time purchases.  */
         mode: "payment", //For payment mode, there is a maximum of 100 line items, however it is recommended to consolidate line items if there are more than a few dozen.
         //Added customer id to sessions parameters
-        customer: customer.id,
+        //customer: customer.id,
         //C) Added customer to payment method types.
-        payment_method_types: ["card", "customer_balance"],
+        payment_method_types: ["card" /* , "customer_balance" */],
         billing_address_collection: "required", // ''auto' Checkout will only collect the billing address when necessary.
         shipping_options: [{ shipping_rate: "shr_1LsqnWHjmPVeHab7wyM2TU6y" }],
         locale: "pt",
         phone_number_collection: {
           enabled: true,
         },
+        tax_id_collection: {
+          enabled: true,
+        },
         //D) added options.
-        payment_method_options: {
+        /*  payment_method_options: {
           customer_balance: {
             funding_type: "bank_transfer",
             bank_transfer: {
@@ -45,7 +48,7 @@ export default async function handler(req, res) {
               },
             },
           },
-        },
+        }, */
         /* C) Products to sell. A list of items the customer is purchasing. Use this parameter to pass one-time or recurring Prices. */
         line_items: req.body.map((item) => {
           const img = item.image[0].asset._ref;
